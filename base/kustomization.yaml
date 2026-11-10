@@ -22,3 +22,20 @@ configMapGenerator:
     literals:
       - OPTION_A=Cats
       - OPTION_B=Dogs
+
+# Bonus sync waves : vague 0 (défaut) = redis, db, Services, ConfigMap, PVC ;
+# vague 1 = consommateurs (vote, result, worker) ; vague 2 = exposition (Ingress).
+patches:
+  - patch: |-
+      - op: add
+        path: /metadata/annotations
+        value: {"argocd.argoproj.io/sync-wave": "1"}
+    target:
+      kind: Deployment
+      name: (vote|result|worker)
+  - patch: |-
+      - op: add
+        path: /metadata/annotations
+        value: {"argocd.argoproj.io/sync-wave": "2"}
+    target:
+      kind: Ingress
