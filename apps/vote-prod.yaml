@@ -1,0 +1,19 @@
+# Application Argo CD vote-prod : écrite directement en YAML.
+# Pas de bloc "automated" => synchronisation MANUELLE (argocd app sync ou bouton SYNC).
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vote-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/User16546549/votingapp-gitops.git
+    targetRevision: main
+    path: overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vote-prod
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
