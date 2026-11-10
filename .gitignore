@@ -1,0 +1,5 @@
+# Jamais de secrets dans ce dépôt
+*secret*.yaml
+*.key
+*.pem
+kubeconfig*
