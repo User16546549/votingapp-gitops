@@ -10,7 +10,7 @@ spec:
   destination:
     namespace: vote-dev
     server: https://kubernetes.default.svc
-  project: default
+  project: voting
   source:
     path: overlays/dev
     repoURL: https://github.com/User16546549/votingapp-gitops.git

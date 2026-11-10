@@ -6,7 +6,7 @@ metadata:
   name: vote-prod
   namespace: argocd
 spec:
-  project: default
+  project: voting
   source:
     repoURL: https://github.com/User16546549/votingapp-gitops.git
     targetRevision: main
